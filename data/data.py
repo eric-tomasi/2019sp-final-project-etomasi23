@@ -13,8 +13,8 @@ def sql_query(filename):
         return sqlFile
 
 
-def generate_df():
-    '''returns base pandas dataframe from query.sql'''
+def generate_df(query_file):
+    '''input a .sql file as a string. returns pandas dataframe from the result set'''
     #SQL Alchemy connection
     engine = create_engine('oracle://{}:{}@{}'.format(os.environ.get('USER'), os.environ.get('PW'), os.environ.get('DB')))
 
@@ -29,7 +29,7 @@ def generate_df():
     #Session
     db_session = Session()
 
-    df = pd.read_sql(sql_query('query.sql'), con=conn)
+    df = pd.read_sql(sql_query(query_file), con=conn)
 
     db_session.close()
     conn.close()
