@@ -21,7 +21,7 @@ def hash_col(val):
     salt = os.environ.get('SALT')
 
     m = hashlib.sha256()
-    m.update(val.to_csv().encode())
+    m.update(val.to_csv(header=False).encode())
     m.update(salt.encode())
 
     return m.hexdigest()[:8]
@@ -51,7 +51,3 @@ def generate_df(query_file):
     conn.close()
 
     return df
-
-df = generate_df('query.sql'):
-
-print(df.head())
