@@ -24,7 +24,7 @@ def hash_col(val):
     return m.hexdigest()[:8]
 
 def generate_df(query_file):
-    '''Input a .sql file as a string and return a dataframe of the result set'''
+    '''Input a .sql file as a string and return a dataframe of the result set. ID column uses sha256 hash with SALT'''
     #SQL Alchemy connection
     engine = create_engine('oracle://{}:{}@{}'.format(os.environ.get('USER'), os.environ.get('PW'), os.environ.get('DB')))
 
@@ -41,13 +41,10 @@ def generate_df(query_file):
 
     df = pd.read_sql(sql_query(query_file), con=conn)
 
+    if query_file == 'query.sql':
+        df['id'] = df.apply(hash_col,axis=1)
+
     db_session.close()
     conn.close()
 
     return df
-
-df = generate_df('query.sql')
-
-df['prsbr_cid'] = df.apply(hash_col,axis=1)
-
-print(df.head())
