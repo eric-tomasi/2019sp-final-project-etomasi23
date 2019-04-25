@@ -15,6 +15,9 @@ def sql_query(filename):
 
 
 def hash_col(val):
+    '''uses sha256 algorithm to hash a single string. returns hexidecimal value with 8 characters'''
+
+    #.env file contains secret key called SALT
     salt = os.environ.get('SALT')
 
     m = hashlib.sha256()
@@ -48,3 +51,7 @@ def generate_df(query_file):
     conn.close()
 
     return df
+
+df = generate_df('query.sql'):
+
+print(df.head())
