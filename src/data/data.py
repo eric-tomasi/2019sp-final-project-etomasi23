@@ -14,12 +14,14 @@ def sql_query(filename):
         return sqlFile
 
 
-def hash_col(val, salt=''):
-    m = hashlib.sha256()
-    m.update(val)
-    m.update(salt)
+def hash_col(val):
+    salt = os.environ.get('SALT')
 
-    return m.digest()
+    m = hashlib.sha256()
+    m.update(val.to_csv().encode())
+    m.update(salt.encode())
+
+    return m.hexdigest()[:8]
 
 def generate_df(query_file):
     '''Input a .sql file as a string and return a dataframe of the result set'''
@@ -46,6 +48,6 @@ def generate_df(query_file):
 
 df = generate_df('query.sql')
 
-df['prsbr_cid'] = df['prsbr_cid'].apply(hashlib.sha256(df['prsbr_cid'].to_csv().encode())).hexdigest()[:8]
+df['prsbr_cid'] = df.apply(hash_col,axis=1)
 
 print(df.head())
