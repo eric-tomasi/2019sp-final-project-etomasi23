@@ -68,4 +68,16 @@ def any_comp(df):
     else:
         return 0.0
 
+
+def any_sun(df):
+    '''Assigns .25 points to record if they have any non-competitor volume'''
+    
+    if (df['sun_curr_vol'] > 0):
+        return 0.25
+    else:
+        return 0
+
+
+
+
 print(df.columns)
