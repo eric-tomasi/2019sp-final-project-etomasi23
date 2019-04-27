@@ -11,4 +11,18 @@ def competitors_growing(df):
     else:
         return 0
 
-#print(df.head())
+
+def flat_decline_sun(df):
+
+    if ((df['sun_curr_vol']) <= (df['sun_prev_vol'])):
+        return 5
+    elif ((df['sun_curr_vol']) > (1.5*df['sun_prev_vol'])):
+        return -7
+    elif ((df['sun_curr_vol']) > (1.25*df['sun_prev_vol'])):
+        return -6
+    elif ((df['sun_curr_vol']) > (1.1*df['sun_prev_vol'])):
+        return -5
+    else:
+        return 0
+
+print(df.columns)
