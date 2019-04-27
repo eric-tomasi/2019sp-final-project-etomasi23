@@ -103,7 +103,7 @@ def apply_funcs(df):
 
 def total_points(df):
     '''Calculate total points from columns derived by the apply_funcs function'''
-    
+
     df = apply_funcs(df)
 
     col_list = ['competitors_growing', 'flat_decline_sun', 'high_comp', 'sun_250', 'decile', 'any_comp', 'any_sun', 'tier_points']
@@ -113,7 +113,42 @@ def total_points(df):
     return df
 
 
+def final_target_list(df):
+    '''Input initial datafram from generate_df and return final datafram consisting of top 20 targets by territory'''
+
+    df = total_points(df)
+
+    df = df.sort_values(['terr',
+                     'TOTAL_POINTS',
+                     'dcl',
+                     'tier',
+                     'sun_curr_vol',
+                     'comp1_curr_vol',
+                     'comp2_curr_vol'],
+
+                    ascending=[True,
+                              False,
+                              False,
+                              True,
+                              False,
+                              False,
+                              False]
+                        )
+
+    df['RANK'] = df.groupby('terr').cumcount()+1
+
+    final_target_list = df[['id', 'terr', 'RANK']]
+    final_target_list = final_target_list[final_target_list['RANK'] <= 20]
+    final_target_list = final_target_list[final_target_list['terr'] != 'H99699992']
+
+    return final_target_list
+
+
 df = generate_df('data/query.sql')
 df2 = total_points(df)
 
-print(df2.columns)
+
+#in main.py, send both dfs from total_points and final_target_list to an excel workbook.
+
+
+print(df2.head())
