@@ -1,8 +1,6 @@
 from data.data import generate_df
 
 
-df = generate_df('data/query.sql')
-
 def competitors_growing(df):
     '''Assigns 4 points to record if competitor volume is growing'''
 
@@ -79,7 +77,7 @@ def any_sun(df):
 
 
 def tier_points(df):
-    
+
     if (df['tier'] == 'TIER 1'):
         return 2.5
     elif (df['tier'] == 'TIER 2') or (df['tier'] == 'TIER 3'):
@@ -92,6 +90,17 @@ def tier_points(df):
         return 0
 
 
+def apply_funcs(df):
+    '''Applies all functions to existing datarame and stores results in a new column. Returns new df'''
+    
+    func_list = [competitors_growing, flat_decline_sun, high_comp, sun_250, decile, any_comp, any_sun, tier_points]
 
+    for func in func_list:
+        df[func.__name__] = df.apply(func, axis=1)
 
-print(df.columns)
+    return df
+
+df = generate_df('data/query.sql')
+df2 = apply_funcs(df)
+
+print(df2.columns)
