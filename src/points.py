@@ -92,7 +92,7 @@ def tier_points(df):
 
 def apply_funcs(df):
     '''Applies all functions to existing datarame and stores results in a new column. Returns new df'''
-    
+
     func_list = [competitors_growing, flat_decline_sun, high_comp, sun_250, decile, any_comp, any_sun, tier_points]
 
     for func in func_list:
@@ -100,7 +100,20 @@ def apply_funcs(df):
 
     return df
 
+
+def total_points(df):
+    '''Calculate total points from columns derived by the apply_funcs function'''
+    
+    df = apply_funcs(df)
+
+    col_list = ['competitors_growing', 'flat_decline_sun', 'high_comp', 'sun_250', 'decile', 'any_comp', 'any_sun', 'tier_points']
+
+    df['TOTAL_POINTS'] = df[col_list].sum(axis=1)
+
+    return df
+
+
 df = generate_df('data/query.sql')
-df2 = apply_funcs(df)
+df2 = total_points(df)
 
 print(df2.columns)
