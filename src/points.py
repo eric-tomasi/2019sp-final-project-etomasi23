@@ -13,6 +13,7 @@ def competitors_growing(df):
 
 
 def flat_decline_sun(df):
+    '''Assigns 5 points if declining in non-competitor volume, and penalizes if non-comptetior is growing'''
 
     if ((df['sun_curr_vol']) <= (df['sun_prev_vol'])):
         return 5
@@ -22,6 +23,17 @@ def flat_decline_sun(df):
         return -6
     elif ((df['sun_curr_vol']) > (1.1*df['sun_prev_vol'])):
         return -5
+    else:
+        return 0
+
+
+def high_comp(df):
+    '''Assigns 2 points to records that have high competitor volume'''
+    
+    if (df['comp1_curr_vol'] > 600):
+        return 2
+    elif (df['comp2_curr_vol'] > 600):
+        return 2
     else:
         return 0
 
