@@ -44,7 +44,7 @@ def generate_df(query_file):
 
     df = pd.read_sql(sql_query(query_file), con=conn)
 
-    if query_file == 'query.sql':
+    if query_file == 'data/query.sql':
         df['id'] = df.apply(hash_col,axis=1)
 
     db_session.close()
