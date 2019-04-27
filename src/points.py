@@ -71,9 +71,23 @@ def any_comp(df):
 
 def any_sun(df):
     '''Assigns .25 points to record if they have any non-competitor volume'''
-    
+
     if (df['sun_curr_vol'] > 0):
         return 0.25
+    else:
+        return 0
+
+
+def tier_points(df):
+    
+    if (df['tier'] == 'TIER 1'):
+        return 2.5
+    elif (df['tier'] == 'TIER 2') or (df['tier'] == 'TIER 3'):
+        return 2.0
+    elif (df['tier'] == 'TIER 4'):
+        return 1.0
+    elif (df['tier'] == 'TIER 5'):
+        return -1.0
     else:
         return 0
 
