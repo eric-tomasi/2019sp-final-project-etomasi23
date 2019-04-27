@@ -46,4 +46,17 @@ def sun_250(df):
     else:
         return 0.0
 
+
+def decile(df):
+    '''Assigns points to record on sliding scale based on decile'''
+    
+    if (df['dcl'] == 10) or (df['dcl'] == 9) or (df['dcl'] == 8) or (df['dcl'] == 7):
+        return 1.0
+    elif (df['dcl'] == 6) or (df['dcl'] == 5):
+        return 0.5
+    elif (df['dcl'] == 4) or (df['dcl'] == 3):
+        return 0.25
+    else:
+        return 0.0
+
 print(df.columns)
