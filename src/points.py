@@ -29,12 +29,21 @@ def flat_decline_sun(df):
 
 def high_comp(df):
     '''Assigns 2 points to records that have high competitor volume'''
-    
+
     if (df['comp1_curr_vol'] > 600):
         return 2
     elif (df['comp2_curr_vol'] > 600):
         return 2
     else:
         return 0
+
+
+def sun_250(df):
+    '''Assigns .5 points if record has moderate non-competitor volume'''
+
+    if (df['sun_curr_vol'] > 250):
+        return 0.5
+    else:
+        return 0.0
 
 print(df.columns)
