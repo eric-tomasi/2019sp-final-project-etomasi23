@@ -56,8 +56,3 @@ def regression(df):
     print(regression.summary())
 
     return predict
-
-df = generate_df('data/roi.sql')
-df = regression(df)
-
-print(df.head())
