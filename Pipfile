@@ -13,6 +13,7 @@ statsmodels = "*"
 scipy = "*"
 matplotlib = "*"
 seaborn = "*"
+xlsxwriter = "*"
 
 [requires]
 python_version = "3.7"
