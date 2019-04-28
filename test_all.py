@@ -18,10 +18,10 @@ df = df.sort_values(['terr',
                           False]
                     )
 
-def testing_competitors_growing():
 
-    print(df.head())
+
+def test_competitors_growing():
 
     df['test'] = df.apply(competitors_growing, axis=1)
 
-testing_competitors_growing()
+    assert df.iloc[0,-1] == 4
