@@ -1,6 +1,6 @@
 from data.data import generate_df
 from points import total_points, final_target_list
-from model import regression
+from model import filter_df, regression
 from viz import plot_trend
 import pandas as pd
 
@@ -23,4 +23,12 @@ def main():
     writer.save()
 
 
+    #create roi dataframe to run regression which prints to console and plot trends (actuals and predictions)
+    roi = generate_df('data/roi.sql')
+
+    roi = filter_df(roi)
     
+    plot_trend(roi)
+
+
+main()
