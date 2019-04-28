@@ -4,6 +4,8 @@ from model import filter_df, regression
 from viz import plot_trend
 import pandas as pd
 
+
+
 def main():
 
     #generate initial dataframe
@@ -27,7 +29,7 @@ def main():
     roi = generate_df('data/roi.sql')
 
     roi = filter_df(roi)
-    
+
     plot_trend(roi)
 
 
