@@ -1,6 +1,4 @@
-from data.data import generate_df
 from model import filter_df, regression
-
 
 
 def plot_trend(roi):
@@ -46,11 +44,3 @@ def plot_trend(roi):
     plt.title('Final Target Contest Trend')
     plt.legend(loc='lower center')
     fig.savefig('data/trend.png', dpi=fig.dpi)
-
-
-#df = generate_df('data/roi.sql')
-
-#roi = filter_df(df)
-
-
-#plot_trend(roi)

@@ -1,5 +1,3 @@
-from data.data import generate_df
-
 
 def competitors_growing(df):
     '''Assigns 4 points to record if competitor volume is growing'''
@@ -142,13 +140,3 @@ def final_target_list(df):
     final_target_list = final_target_list[final_target_list['terr'] != 'H99699992']
 
     return final_target_list
-
-
-df = generate_df('data/query.sql')
-df2 = total_points(df)
-
-
-#in main.py, send both dfs from total_points and final_target_list to an excel workbook.
-
-
-print(df2.head())

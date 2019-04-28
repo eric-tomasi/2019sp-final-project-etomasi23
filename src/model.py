@@ -1,5 +1,3 @@
-from data.data import generate_df
-
 
 def filter_df(roi):
     '''Inputs a datafram and applies various filters and sorts input dataframe and returns the new dataframe'''
