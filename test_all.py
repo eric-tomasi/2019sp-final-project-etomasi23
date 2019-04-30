@@ -25,3 +25,68 @@ def test_competitors_growing():
     df['test'] = df.apply(competitors_growing, axis=1)
 
     assert df.iloc[0,-1] == 4
+    assert df.iloc[3,-1] == 0
+
+
+
+def test_flat_decline_sun():
+
+    df['test'] = df.apply(flat_decline_sun, axis=1)
+
+    assert df.iloc[23,-1] == 5
+    assert df.iloc[19,-1] == -5
+    assert df.iloc[17,-1] == -7
+    assert df.iloc[1,-1] == 0
+
+
+def test_high_comp():
+
+    df['test'] = df.apply(high_comp, axis=1)
+
+    assert df.iloc[0,-1] == 0
+    assert df.iloc[2,-1] == 2
+    assert df.iloc[15,-1] == 2
+
+
+def test_sun_250():
+
+    df['test'] = df.apply(sun_250, axis=1)
+
+    assert df.iloc[0,-1] == 0.5
+    assert df.iloc[26,-1] == 0
+
+
+def test_decile():
+
+    df['test'] = df.apply(decile, axis=1)
+
+    assert df.iloc[0,-1] == 1.0
+    assert df.iloc[8,-1] == 0.5
+    assert df.iloc[60,-1] == 0.25
+    assert df.iloc[37,-1] == 0
+
+
+def test_any_comp():
+
+    df['test'] = df.apply(any_comp, axis=1)
+
+    assert df.iloc[0,-1] == 0.25
+    assert df.iloc[3,-1] == 0
+
+
+def test_any_sun():
+
+    df['test'] = df.apply(any_sun, axis=1)
+
+    assert df.iloc[0,-1] == 0.25
+    assert df.iloc[29,-1] == 0
+
+
+def test_tier_points():
+
+    df['test'] = df.apply(tier_points, axis=1)
+
+    assert df.iloc[2,-1] == 2.5
+    assert df.iloc[45,-1] == 2.0
+    assert df.iloc[0,-1] == 1
+    assert df.iloc[3,-1] == -1
