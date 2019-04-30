@@ -25,3 +25,4 @@ def test_competitors_growing():
     df['test'] = df.apply(competitors_growing, axis=1)
 
     assert df.iloc[0,-1] == 4
+    assert df.iloc[3,-1] == 0
