@@ -72,3 +72,11 @@ def test_any_comp():
 
     assert df.iloc[0,-1] == 0.25
     assert df.iloc[3,-1] == 0
+
+
+def test_any_sun():
+
+    df['test'] = df.apply(any_sun, axis=1)
+
+    assert df.iloc[0,-1] == 0.25
+    assert df.iloc[29,-1] == 0
