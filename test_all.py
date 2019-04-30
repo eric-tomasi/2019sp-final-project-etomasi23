@@ -80,3 +80,13 @@ def test_any_sun():
 
     assert df.iloc[0,-1] == 0.25
     assert df.iloc[29,-1] == 0
+
+
+def test_tier_points():
+
+    df['test'] = df.apply(tier_points, axis=1)
+
+    assert df.iloc[2,-1] == 2.5
+    assert df.iloc[45,-1] == 2.0
+    assert df.iloc[0,-1] == 1
+    assert df.iloc[3,-1] == -1
