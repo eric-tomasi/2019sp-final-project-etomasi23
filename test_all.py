@@ -54,3 +54,21 @@ def test_sun_250():
 
     assert df.iloc[0,-1] == 0.5
     assert df.iloc[26,-1] == 0
+
+
+def test_decile():
+
+    df['test'] = df.apply(decile, axis=1)
+
+    assert df.iloc[0,-1] == 1.0
+    assert df.iloc[8,-1] == 0.5
+    assert df.iloc[60,-1] == 0.25
+    assert df.iloc[37,-1] == 0
+
+
+def test_any_comp():
+
+    df['test'] = df.apply(any_comp, axis=1)
+
+    assert df.iloc[0,-1] == 0.25
+    assert df.iloc[3,-1] == 0
